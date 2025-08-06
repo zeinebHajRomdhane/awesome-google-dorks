@@ -25,7 +25,7 @@
 | `allinurl:keyword1 keyword2`                       | `allinurl:admin login`                         | URL contains both keywords (space-separated)                                |
 | `allintitle:keyword1 keyword2`                     | `allintitle:admin user`                        | Title contains both keywords                                                |
 | `allinanchor:keyword1 keyword2`                    | `allinanchor:"login panel"`                    | Anchor text includes all listed keywords                                    |
-| `daterange:2455340-2455634`                        | `daterange:2455340-2455634 intext:confidential`| Search within pages indexed during a date range (Julian format)             |
+| `daterange:2459340-2459634`                        | `daterange:2459340-2459634 intext:confidential`| Search within pages indexed during a date range (Julian format)             |
 | `info:abc.com`                                     | `info:example.com`                             | Displays Google’s info about the site                                       |
 | `link:abc.com`                                     | `link:wikipedia.org`                           | Shows pages linking to a given site                                         |
 | `-keyword`                                         | `password -reset`                              | Exclude results containing a specific word                                  |
@@ -35,44 +35,64 @@
 
 ---
 
-## 🎯 Practical Examples
+## 🎯 Practical Examples & Pro Tips
 
-- Find PDF files about cybersecurity:  
-  `filetype:pdf sécurité`
-- Find pages linking to Wikipedia:  
-  `link:fr.wikipedia.org`
-- Look for open "directory listings":  
-  `intitle:"index of /"`
-- Find admin login pages:  
-  `allinurl:"admin login"`
-- Search specific credentials exposure:  
-  `intext:password filetype:txt`
-- Get only French results about admin passwords:  
-  `inurl:password admin site:fr`
+- **Find PDF files about security**
+  - `filetype:pdf security`
+- **Find pages linking to Github**
+  - `link:fr.github.com`
+- **Look for open directory listings**
+  - `intitle:"index of /"`
+- **Find admin login pages**
+  - `allinurl:"admin login"`
+- **Search for credential exposures in text files**
+  - `intext:password filetype:txt`
+- **List admin passwords on French sites**
+  - `inurl:password admin site:fr`
 
-Check more examples [below](#dork-examples-in-action)!
+### 🧠 Tips for Using Dorks Effectively
 
----
-
-## 🔒 Security Tips & Ethical Use
-
-- **Always have explicit authorization before probing sites with dorks!**
-- Use personal/private search windows or tools to limit footprint and avoid leaking intent.
-- Combine with `site:` to restrict your queries and avoid scanning the entire web.
-- Watch out for sensitive discoveries: **report responsibly** (responsible disclosure).
-- Don’t download or exploit data found without consent; it's illegal and unethical.
-- Try your dorks on test environments first to build confidence.
+- ✨ **Chain operators for specificity:** Combine multiple operators to reduce noise. E.g., `site:.gov filetype:xls intext:email`.
+- 🔍 **Focus on exposed directories:** Directory listings (`intitle:"index of /"`) with filetype filters (`filetype:log`, `filetype:bak`) help spot forgotten backups and logs.
+- 🕵️ **Identify password leaks:** Use `intext:password | pass | pwd` with `filetype:txt OR filetype:log` to maximize keyword coverage.
+- 🌍 **Target regions or languages:** Use `site:fr`, `site:edu`, or `site:gov` to focus on relevant TLDs. Use language-specific words in dorks.
+- ⏱️ **Look for recent exposures:** Use `daterange:` for time-limited leaks or recently indexed content.
+- 🃏 **Wildcard search:** Use `*` to capture variable parts, e.g., `intitle:"index of" inurl:ftp *backup*`.
+- 🏷️ **Hunt for web shells or admin consoles:** `intitle:"shell" OR intitle:"upload" filetype:php -github` to avoid public source repositories.
+- 👁️ **Spot exposed documents:** Try `filetype:xls intext:"login" intext:"password"` to find spreadsheets holding access data.
 
 ---
 
-## 📈 Boost Your Search Efficiency
+## 🚨 Security Tips & Ethical Use
 
-- Combine multiple operators for pinpoint accuracy.
-  - Example: `site:edu filetype:xls intext:email`
-- Use quoted strings for exact match searches (“password list”).
-- Exclude undesired results with `-`.
-- Use `daterange:` for only recent results.
-- Remember: Results may change as Google updates its index!
+- **Never scan or probe without explicit authorization.**
+- Use `site:` operators to minimize collateral impact and avoid unnecessary attention.
+- Prefer using VPNs, Tor, or proxies to separate recon from personal activity.
+- Google may temporarily block you for too many similar queries—diversify your dorks and throttle your requests.
+- If you discover sensitive data, engage in responsible disclosure to the site owner.
+- Log your search queries to document ethical/research use if needed.
+
+---
+
+## #dork-examples-in-action
+
+> Real-world dorks you can adapt:
+
+- Discover sensitive PDF files about network configurations
+  - `filetype:pdf intext:"configuration" intext:"network" site:.gov`
+- Find public backup files on any French site:
+  - `site:fr inurl:backup filetype:zip OR filetype:tar`
+- Detect open admin interfaces with multiple keywords:
+  - `allintitle:admin login "dashboard"`
+- Search for emails on Brazilian university websites:
+  - `site:br intext:@gmail.com OR intext:@yahoo.com`
+- Hunt for SQL error messages:
+  - `intext:"you have an error in your SQL syntax" -github`
+- Find exposed WordPress login panels:
+  - `inurl:wp-login.php -github`
+- Locate cameras, printers, or embedded devices:
+  - `inurl:view/view.shtml`  
+  - `inurl:main.cgi admin`
 
 ---
 
@@ -90,5 +110,3 @@ Unauthorized probing of networks or systems is prohibited by law.
 ---
 
 **Want to contribute your own favorite dorks or usage tips? Pull requests welcome!**
-
----
