@@ -131,8 +131,6 @@ To both block search engines from following links and from indexing the page, us
 
 ### 3. Disable Caching and Snippet Creation
 
-To both block search engines from following links and from indexing the page, use:
-
 ```html
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, nocache, noodp, noydir">
 ```
