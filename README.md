@@ -1,4 +1,4 @@
-# 🔍 Awesome Google Dorks Cheat Sheet
+# 🔍 Awesome Google Dorks Cheat Sheet & Google Hacking
 
 > A curated guide to mastering **Google Dorks** for ethical hacking, cybersecurity, and effective OSINT investigations.  
 > 🚀 Learn advanced Google search operators, real-world use cases, and security tips to safely leverage dorks.
