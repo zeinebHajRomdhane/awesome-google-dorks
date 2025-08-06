@@ -74,7 +74,7 @@
 
 ---
 
-## #dork-examples-in-action
+## Dork examples in action
 
 > Real-world dorks you can adapt:
 
@@ -106,6 +106,40 @@
 
 This project is for **educational and ethical purposes** only.  
 Unauthorized probing of networks or systems is prohibited by law.
+
+---
+
+## How to Protect Against Google Dorks
+
+**Google Dorks** refer to advanced search queries that attackers can use to find sensitive or vulnerable information indexed by search engines. To prevent sensitive data or pages from being exposed in search results, you can use the following techniques:
+
+### 1. Exclude Sensitive Pages from Indexing
+
+Add the following META tag in the HTML code of sensitive pages to prevent them from being indexed:
+
+```html
+<meta name="robots" content="noindex">
+```
+
+### 2. Block Link Following and Indexing
+
+To both block search engines from following links and from indexing the page, use:
+
+```html
+<meta name="robots" content="noindex, nofollow">
+```
+
+### 3. Disable Caching and Snippet Creation
+
+To both block search engines from following links and from indexing the page, use:
+
+```html
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, nocache, noodp, noydir">
+```
+
+### ⚠️ Important Notes
+
+These settings only affect compliant search engines (like Google, Bing, etc.). They do not prevent access to the page itself.
 
 ---
 
